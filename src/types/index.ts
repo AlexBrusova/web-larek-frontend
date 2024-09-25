@@ -10,7 +10,7 @@ interface ProductDataApiResponse {
 /**
  * Данные о продукте, получаемые в каждом объекте массива items
  */
-interface ProductApiData {
+export interface ProductApiData {
   id: string;
   description: string;
   image: string;
@@ -20,21 +20,37 @@ interface ProductApiData {
 }
 
 /**
- * Данные для создания заказа
+ * Типы категорий товара
  */
-interface OrderData {
-  paymentMethod: PaymentMethod;
-  email: string;
-  phone: string;
-  adress: string;
-  products: OrderProductData[];
-  totalAmount: number;
-}
+export type CategoryType =
+	| 'другое'
+	| 'софт-скил'
+	| 'дополнительное'
+	| 'кнопка'
+	| 'хард-скил';
+
+export type CategoryMap = {
+	[Key in CategoryType]: string;
+};
 
 /**
  * Данные для создания заказа
  */
-interface OrderProductData {
+export interface IOrderData {
+  paymentMethod: PaymentMethod;
+  email: string;
+  phone: string;
+  adress: string;
+}
+
+export interface IOrder extends IOrderData{
+  products: string[];
+  totalAmount: number;
+}
+/**
+ * Данные для создания заказа
+ */
+export interface OrderProductData {
   productId: string;
 }
 
@@ -46,10 +62,12 @@ interface OrderResponse {
   totalAmount: string;
 }
 
+export type FormErrors = Partial<Record<keyof IOrderData, string>>;
+
 /**
  * Способы оплаты
  */
-type PaymentMethod =
+export type PaymentMethod =
   | 'Card'
   | 'Cash'
 
@@ -60,7 +78,7 @@ type PaymentMethod =
 interface IProductApi {
   getProducts(): Promise<ProductApiData[]>;
   getProductById(id: string): Promise<ProductApiData>;
-  createOrder(order: OrderData): Promise<OrderResponse>;
+  createOrder(order: IOrderData): Promise<OrderResponse>;
 }
 
 // Типпы данных для модели данных
@@ -68,10 +86,10 @@ interface IProductApi {
 /**
  * Интерфейс модели данных - состояния приложения
  */
-interface AppState {
+export interface IAppState {
   products: ProductApiData[]; //доступные товары
-  basket: ProductApiData[]; //товары в корзине
-  order: OrderData; //заказ
+  basket: string; //товары в корзине
+  order: IOrderData; //заказ
   modal: ProductApiData //модалка с открытым товаром
 
   loadProducts(): Promise<void>; //загрузить все доступные товары на страницу
