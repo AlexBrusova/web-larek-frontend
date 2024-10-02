@@ -3,8 +3,13 @@
 /**
  * Данные, получаемые при запросе списка продуктов (массив с продуктами)
  */
-interface ProductDataApiResponse {
+export interface ProductDataApiResponse {
   items: ProductApiData[]
+}
+
+export type ApiListResponse<Type> = {
+  total: number;
+	items: Type[];
 }
 
 /**
@@ -15,8 +20,8 @@ export interface ProductApiData {
   description: string;
   image: string;
   title: string;
-  category: string;
-  price: string
+  category: CategoryType;
+  price: number | null
 }
 
 /**

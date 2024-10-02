@@ -6,7 +6,7 @@ import { FormHandler } from '../components/common/Form';
  */
 export interface IOrder {
   address: string; 
-  payment: string; 
+  paymentMethod: string; 
 }
 
 /**
@@ -33,7 +33,7 @@ export class Order extends FormHandler<IOrder> {
       this._cash.addEventListener('click', () => {
         this._cash.classList.add('button_alt-active'); 
         this._card.classList.remove('button_alt-active'); 
-        this.handleFieldInput('payment', 'cash'); 
+        this.handleFieldInput('paymentMethod', 'cash'); 
       });
     }
 
@@ -42,7 +42,7 @@ export class Order extends FormHandler<IOrder> {
       this._card.addEventListener('click', () => {
         this._card.classList.add('button_alt-active'); 
         this._cash.classList.remove('button_alt-active'); 
-        this.handleFieldInput('payment', 'card'); 
+        this.handleFieldInput('paymentMethod', 'card'); 
       });
     }
   }
