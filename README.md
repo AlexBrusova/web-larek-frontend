@@ -167,7 +167,7 @@ yarn build
      - `products: string[]` — массив идентификаторов товаров в заказе.
      - `paymentMethod: string` — способ оплаты (например, "Card" или "Cash").
      - `totalAmount: number | null` — общая сумма заказа.
-     - `adress: string` — адрес доставки.
+     - `address: string` — адрес доставки.
      - `email: string` — адрес электронной почты покупателя.
      - `phone: string` — номер телефона покупателя.
 
@@ -176,7 +176,7 @@ yarn build
    - **Свойства**:
      - `email?: string` — ошибка для поля email.
      - `phone?: string` — ошибка для поля телефона.
-     - `adress?: string` — ошибка для поля адреса.
+     - `address?: string` — ошибка для поля адреса.
      - `paymentMethod?: string` — ошибка для поля способа оплаты.
 
 ## Взаимодействие компонентов

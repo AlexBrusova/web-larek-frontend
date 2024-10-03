@@ -140,9 +140,9 @@ api
   });
 
   events.on('paymentFormErrors:change', (errors: Partial<IOrder>) => {
-    const { paymentMethod, adress } = errors;
-    order.isValid = !paymentMethod && !adress;
-    order.errorMessages = Object.values({paymentMethod, adress }).filter(i => !!i).join('; ');
+    const { paymentMethod, address } = errors;
+    order.isValid = !paymentMethod && !address;
+    order.errorMessages = Object.values({paymentMethod, address }).filter(i => !!i).join('; ');
   });
 
   events.on('contactsFormErrors:change', (errors: Partial<IOrder>) => {

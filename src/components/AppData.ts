@@ -39,7 +39,7 @@ export class AppState extends Model<IAppState> {
     products: [],
     paymentMethod: 'Card', // Метод оплаты по умолчанию.
     totalAmount: null,
-    adress: '',
+    address: '',
     email: '',
     phone: '',
   };
@@ -104,7 +104,6 @@ export class AppState extends Model<IAppState> {
     if (this.validateContacts()) {
       this.events.emit('contacts:ready', this.order);
     }
-
     // Проверка заказа перед эмиссией события
     if (this.validateOrder()) {
       this.events.emit('order:ready', this.order);
@@ -117,14 +116,14 @@ export class AppState extends Model<IAppState> {
    */
   validateOrder() {
     const errors: typeof this.formErrors = {};
-    if (!this.order.adress) {
-      errors.adress = 'Необходимо указать адрес';
+    if (!this.order.address) {
+      errors.address = 'Необходимо указать адрес';
     }
     if (!this.order.paymentMethod) {
       errors.paymentMethod = 'Необходимо указать способ оплаты';
     }
     this.formErrors = errors;
-    this.events.emit('formErrors:change', this.formErrors);
+    this.events.emit('paymentFormErrors:change', this.formErrors);
     return Object.keys(errors).length === 0;
   }
 
@@ -140,9 +139,9 @@ export class AppState extends Model<IAppState> {
     if (!this.order.phone) {
       errors.phone = 'Необходимо указать телефон';
     }
-    
+
     this.formErrors = errors;
-    this.events.emit('formErrors:change', this.formErrors);
+    this.events.emit('contactsFormErrors:change', this.formErrors);
     return Object.keys(errors).length === 0;
   }
 
@@ -153,7 +152,7 @@ export class AppState extends Model<IAppState> {
     this.order = {
       products: [],
       totalAmount: null,
-      adress: '',
+      address: '',
       email: '',
       phone: '',
       paymentMethod: 'Card'

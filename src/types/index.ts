@@ -45,7 +45,7 @@ export interface IOrderData {
   paymentMethod: PaymentMethod;
   email: string;
   phone: string;
-  adress: string;
+  address: string;
 }
 
 export interface IOrder extends IOrderData{

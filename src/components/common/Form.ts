@@ -58,8 +58,8 @@ export class FormHandler<U> extends Component<IFormStatus> {
   // При изменении поля вызывается кастомное событие 'formInput:update' с данными о поле и его значении.
   protected handleFieldInput(fieldName: keyof U, fieldValue: string) {
     this.eventHandler.emit('formInput:update', {
-      fieldName,
-      fieldValue,
+      field: fieldName,
+      value: fieldValue,
     });
   }
 

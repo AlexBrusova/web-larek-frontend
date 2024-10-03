@@ -25,15 +25,15 @@ export class Order extends FormHandler<IOrder> {
     super(container, events); 
 
     // Получение элементов кнопок из формы по их имени
-    this._card = container.elements.namedItem('card') as HTMLButtonElement;
-    this._cash = container.elements.namedItem('cash') as HTMLButtonElement;
+    this._card = container.elements.namedItem('Card') as HTMLButtonElement;
+    this._cash = container.elements.namedItem('Cash') as HTMLButtonElement;
 
     // Обработчик клика для кнопки оплаты наличными
     if (this._cash) {
       this._cash.addEventListener('click', () => {
         this._cash.classList.add('button_alt-active'); 
         this._card.classList.remove('button_alt-active'); 
-        this.handleFieldInput('paymentMethod', 'cash'); 
+        this.handleFieldInput('paymentMethod', 'Cash'); 
       });
     }
 
@@ -42,7 +42,7 @@ export class Order extends FormHandler<IOrder> {
       this._card.addEventListener('click', () => {
         this._card.classList.add('button_alt-active'); 
         this._cash.classList.remove('button_alt-active'); 
-        this.handleFieldInput('paymentMethod', 'card'); 
+        this.handleFieldInput('paymentMethod', 'Card'); 
       });
     }
   }
