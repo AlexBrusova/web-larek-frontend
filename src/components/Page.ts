@@ -26,13 +26,13 @@ export class Page extends Component<IPage> {
 
     // Инициализация элементов страницы с помощью функции ensureElement
     this._counter = ensureElement<HTMLElement>('.header__basket-counter'); 
-    this._catalog = ensureElement<HTMLElement>('.catalog__items'); 
+    this._catalog = ensureElement<HTMLElement>('.gallery'); 
     this._wrapper = ensureElement<HTMLElement>('.page__wrapper'); 
     this._basket = ensureElement<HTMLElement>('.header__basket'); 
 
     // Добавление обработчика события клика на элемент корзины
     this._basket.addEventListener('click', () => {
-      this.events.emit('bids:open'); // Эмиссия события открытия корзины
+      this.events.emit('basket:open'); // Эмиссия события открытия корзины
     });
   }
 

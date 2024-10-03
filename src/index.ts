@@ -37,7 +37,7 @@ const order = new Order('order', cloneTemplate(orderTemplate), events)
 const contacts = new Contacts(cloneTemplate(contactsTemplate), events);
 const success = new Success('order-success', cloneTemplate(successTemplate), {
   onClick: () => {
-    events.emit('modal:close')
+    events.emit('modal:hide')
     modal.hide()
   }
 })
@@ -128,11 +128,10 @@ api
     }
   })
 
-  events.on('basket:order', () => {
+  events.on('basket:checkout', () => {
     modal.render({
       content: order.render(
         {
-          // address: '',
           isValid: false,
           errorMessages: []
         }
@@ -140,17 +139,23 @@ api
     });
   });
 
-  events.on('orderFormErrors:change', (errors: Partial<IOrder>) => {
+  events.on('paymentFormErrors:change', (errors: Partial<IOrder>) => {
     const { paymentMethod, adress } = errors;
     order.isValid = !paymentMethod && !adress;
     order.errorMessages = Object.values({paymentMethod, adress }).filter(i => !!i).join('; ');
   });
 
-  events.on('orderInput:change', (data: { field: keyof IOrderData, value: string }) => {
+  events.on('contactsFormErrors:change', (errors: Partial<IOrder>) => {
+    const { email, phone } = errors;
+    contacts.isValid = !email && !phone;
+    contacts.errorMessages = Object.values({ phone, email }).filter(i => !!i).join('; ');
+  });
+
+  events.on('formInput:update', (data: { field: keyof IOrderData, value: string }) => {
     AppData.setOrderField(data.field, data.value);
   });
 
-  events.on('order:submit', () => {
+  events.on('order:formSubmitted', () => {
     AppData.order.totalAmount = AppData.getTotal()
     AppData.setItems();
     modal.render({
@@ -163,7 +168,7 @@ api
     });
   })
 
-  events.on('contacts:submit', () => {
+  events.on('contacts:formSubmitted', () => {
     api.post('/order', AppData.order)
       .then((res) => {
         events.emit('order:success', res);

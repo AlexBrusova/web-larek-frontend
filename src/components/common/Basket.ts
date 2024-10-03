@@ -43,10 +43,10 @@ export class ShoppingCart extends Component<IBasketData> {
     this.itemList = rootElement.querySelector(`.${classPrefix}__list`);
 
     // Добавление обработчика события "click" для кнопки заказа, который
-    // вызывает кастомное событие 'cart:checkout', если кнопка найдена.
+    // вызывает кастомное событие 'basket:checkout', если кнопка найдена.
     if (this.orderButton) {
       this.orderButton.addEventListener('click', () => 
-        this.customEvents.emit('cart:checkout')
+        this.customEvents.emit('basket:checkout')
       );
     }
   }
