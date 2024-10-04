@@ -50,7 +50,7 @@ export class FormHandler<U> extends Component<IFormStatus> {
     // происходит вызов кастомного события, оповещающего о том, что форма была отправлена.
     this.formElement.addEventListener('submit', (event: Event) => {
       event.preventDefault();
-      this.eventHandler.emit(`${this.formElement.name}:formSubmitted`);
+      this.eventHandler.emit(`${this.formElement.name}:submit`);
     });
   }
 

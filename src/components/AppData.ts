@@ -25,20 +25,20 @@ export class Product extends Model<ProductApiData> {
 /**
  * Класс AppState управляет состоянием приложения.
  * Он наследует функциональность от класса Model и включает следующие свойства:
- * 1. products — массив объектов типа Product.
+ * 1. items — массив объектов типа Product.
  * 2. modal — строка, представляющая текущее состояние модального окна.
  * 3. basket — массив товаров, добавленных в корзину.
  * 4. order — объект, представляющий заказ с информацией о товарах, методе оплаты и контактной информации.
  * 5. formErrors — объект для хранения ошибок формы.
  */
 export class AppState extends Model<IAppState> {
-  products: Product[];
+  items: Product[];
   modal: string; 
   basket: Product[] = [];
   order: IOrder = {
-    products: [],
-    paymentMethod: 'Card', // Метод оплаты по умолчанию.
-    totalAmount: null,
+    items: [],
+    payment: 'Card', // Метод оплаты по умолчанию.
+    total: null,
     address: '',
     email: '',
     phone: '',
@@ -80,7 +80,7 @@ export class AppState extends Model<IAppState> {
    * Метод устанавливает идентификаторы товаров из корзины в объект заказа.
    */
   setItems() {
-    this.order.products = this.basket.map(item => item.id);
+    this.order.items = this.basket.map(item => item.id);
   }
 
   /**
@@ -90,7 +90,7 @@ export class AppState extends Model<IAppState> {
    */
   setOrderField(field: keyof IOrderData, value: string) {
     // Проверка для метода оплаты
-    if (field === 'paymentMethod') {
+    if (field === 'payment') {
       if (value === 'Card' || value === 'Cash') {
         this.order[field] = value; 
       } else {
@@ -119,8 +119,8 @@ export class AppState extends Model<IAppState> {
     if (!this.order.address) {
       errors.address = 'Необходимо указать адрес';
     }
-    if (!this.order.paymentMethod) {
-      errors.paymentMethod = 'Необходимо указать способ оплаты';
+    if (!this.order.payment) {
+      errors.payment = 'Необходимо указать способ оплаты';
     }
     this.formErrors = errors;
     this.events.emit('paymentFormErrors:change', this.formErrors);
@@ -150,12 +150,12 @@ export class AppState extends Model<IAppState> {
    */
   refreshOrder() {
     this.order = {
-      products: [],
-      totalAmount: null,
+      items: [],
+      total: null,
       address: '',
       email: '',
       phone: '',
-      paymentMethod: 'Card'
+      payment: 'Card'
     };
   }
 
@@ -172,14 +172,14 @@ export class AppState extends Model<IAppState> {
    * @param items — массив данных о товарах.
    */
   setCatalog(items: ProductApiData[]) {
-    this.products = items.map(item => new Product(item, this.events));
-    this.emitChanges('items:changed', { catalog: this.products });
+    this.items = items.map(item => new Product(item, this.events));
+    this.emitChanges('items:changed', { catalog: this.items });
   }
 
   /**
    * Метод для сброса состояния выбранных товаров в каталоге.
    */
   resetSelected() {
-    this.products.forEach(item => item.selected = false);
+    this.items.forEach(item => item.selected = false);
   }
 }

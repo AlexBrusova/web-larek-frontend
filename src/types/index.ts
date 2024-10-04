@@ -42,15 +42,15 @@ export type CategoryMap = {
  * Данные для создания заказа
  */
 export interface IOrderData {
-  paymentMethod: PaymentMethod;
+  payment: PaymentMethod;
   email: string;
   phone: string;
   address: string;
 }
 
 export interface IOrder extends IOrderData{
-  products: string[];
-  totalAmount: number;
+  items: string[];
+  total: number;
 }
 /**
  * Данные для создания заказа
@@ -64,7 +64,7 @@ export interface OrderProductData {
  */
 interface OrderResponse {
   orderId: string;
-  totalAmount: string;
+  total: string;
 }
 
 export type FormErrors = Partial<Record<keyof IOrderData, string>>;
@@ -92,7 +92,7 @@ interface IProductApi {
  * Интерфейс модели данных - состояния приложения
  */
 export interface IAppState {
-  products: ProductApiData[]; //доступные товары
+  items: ProductApiData[]; //доступные товары
   basket: string; //товары в корзине
   order: IOrderData; //заказ
   modal: ProductApiData //модалка с открытым товаром

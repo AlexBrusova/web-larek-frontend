@@ -18,10 +18,10 @@ export interface IBasketData {
 export class ShoppingCart extends Component<IBasketData> {
   // Приватные свойства, которые будут содержать ссылки на DOM-элементы:
   // itemList — список товаров в корзине,
-  // totalAmount — элемент, отображающий общую сумму корзины,
+  // total — элемент, отображающий общую сумму корзины,
   // orderButton — кнопка оформления заказа.
   private itemList: HTMLElement;
-  private totalAmount: HTMLElement;
+  private total: HTMLElement;
   private orderButton: HTMLButtonElement;
 
 
@@ -39,7 +39,7 @@ export class ShoppingCart extends Component<IBasketData> {
 
     // Инициализация элементов корзины через поиск их в DOM по classPrefix.
     this.orderButton = rootElement.querySelector(`.${classPrefix}__button`);
-    this.totalAmount = rootElement.querySelector(`.${classPrefix}__price`);
+    this.total = rootElement.querySelector(`.${classPrefix}__price`);
     this.itemList = rootElement.querySelector(`.${classPrefix}__list`);
 
     // Добавление обработчика события "click" для кнопки заказа, который
@@ -52,9 +52,9 @@ export class ShoppingCart extends Component<IBasketData> {
   }
 
   // Сеттер для установки общей стоимости товаров в корзине.
-  // Обновляет текстовое содержимое элемента totalAmount.
+  // Обновляет текстовое содержимое элемента total.
   set totalPrice(price: number) {
-    this.totalAmount.textContent = price + ' синапсов';
+    this.total.textContent = price + ' синапсов';
   }
 
   // Сеттер для установки списка товаров.

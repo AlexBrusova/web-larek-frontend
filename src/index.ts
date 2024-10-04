@@ -52,7 +52,7 @@ api
   });
 
   events.on('items:changed', () => {
-    page.catalog = AppData.products.map((item) => {
+    page.catalog = AppData.items.map((item) => {
       const product = new CatalogIProduct(cloneTemplate(catalogProductTemplate), {
         onClick: () => events.emit('card:select', item),
       });
@@ -140,9 +140,9 @@ api
   });
 
   events.on('paymentFormErrors:change', (errors: Partial<IOrder>) => {
-    const { paymentMethod, address } = errors;
-    order.isValid = !paymentMethod && !address;
-    order.errorMessages = Object.values({paymentMethod, address }).filter(i => !!i).join('; ');
+    const { payment, address } = errors;
+    order.isValid = !payment && !address;
+    order.errorMessages = Object.values({payment, address }).filter(i => !!i).join('; ');
   });
 
   events.on('contactsFormErrors:change', (errors: Partial<IOrder>) => {
@@ -155,8 +155,8 @@ api
     AppData.setOrderField(data.field, data.value);
   });
 
-  events.on('order:formSubmitted', () => {
-    AppData.order.totalAmount = AppData.getTotal()
+  events.on('order:submit', () => {
+    AppData.order.total = AppData.getTotal()
     AppData.setItems();
     modal.render({
       content: contacts.render(
@@ -168,7 +168,7 @@ api
     });
   })
 
-  events.on('contacts:formSubmitted', () => {
+  events.on('contacts:submit', () => {
     api.post('/order', AppData.order)
       .then((res) => {
         events.emit('order:success', res);
