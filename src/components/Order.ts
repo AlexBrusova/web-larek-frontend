@@ -1,5 +1,6 @@
 import { IEvents } from './base/events';
 import { FormHandler } from '../components/common/Form';
+import { Component } from './base/Component';
 
 /**
  * Интерфейс, определяющий структуру заказа
@@ -31,8 +32,9 @@ export class Order extends FormHandler<IOrder> {
     // Обработчик клика для кнопки оплаты наличными
     if (this._cash) {
       this._cash.addEventListener('click', () => {
-        this._cash.classList.add('button_alt-active'); 
-        this._card.classList.remove('button_alt-active'); 
+        
+        this.toggleClass(this._cash, 'button_alt-active', true);
+        this.toggleClass(this._card, 'button_alt-active', false);
         this.handleFieldInput('payment', 'Cash'); 
       });
     }
@@ -40,8 +42,8 @@ export class Order extends FormHandler<IOrder> {
     // Обработчик клика для кнопки оплаты картой
     if (this._card) {
       this._card.addEventListener('click', () => {
-        this._card.classList.add('button_alt-active'); 
-        this._cash.classList.remove('button_alt-active'); 
+        this.toggleClass(this._card, 'button_alt-active', true);
+        this.toggleClass(this._cash, 'button_alt-active', false);
         this.handleFieldInput('payment', 'Card'); 
       });
     }
@@ -52,7 +54,7 @@ export class Order extends FormHandler<IOrder> {
    * Используется при необходимости сбросить состояние кнопок.
    */
   disableButtons() {
-    this._cash.classList.remove('button_alt-active'); 
-    this._card.classList.remove('button_alt-active'); 
+    this.toggleClass(this._cash, 'button_alt-active', false);
+    this.toggleClass(this._card, 'button_alt-active', false);
   }
 }

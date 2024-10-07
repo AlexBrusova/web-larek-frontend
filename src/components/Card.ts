@@ -79,7 +79,7 @@ export class Product extends Component<ProductApiData> {
 
   set category(value: CategoryType) {
     this._category.textContent = value;
-    this._category.classList.add(categoryMap[value]);
+    this.toggleClass(this._category, categoryMap[value], true);
   }
 }
 

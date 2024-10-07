@@ -51,16 +51,16 @@ export class ModalComponent extends Component<IModalData> {
   // Метод show отображает модальное окно, добавляя класс активности.
   // Также генерирует событие о том, что модальное окно открыто.
   show() {
-      this.container.classList.add('modal_active');
-      this.eventEmitter.emit('modal:open');
+    this.toggleClass(this.container, 'modal_active', true);
+    this.eventEmitter.emit('modal:open');
   }
 
   // Метод hide скрывает модальное окно, удаляя класс активности.
   // Также очищает содержимое и генерирует событие о закрытии модального окна.
   hide() {
-      this.container.classList.remove('modal_active');
-      this.content = null; 
-      this.eventEmitter.emit('modal:close');
+    this.toggleClass(this.container, 'modal_active', false);
+    this.content = null; 
+    this.eventEmitter.emit('modal:close');
   }
 
   // Метод render отвечает за рендеринг модального окна с заданными данными.
