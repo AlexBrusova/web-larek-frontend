@@ -1,5 +1,6 @@
 import { Model } from "./base/Model";
 import {ProductApiData, IAppState, IOrder, IOrderData, FormErrors} from "../types"
+import { Order } from "./Order";
 
 /**
  * Класс Product описывает структуру данных товара.
@@ -44,6 +45,13 @@ export class AppState extends Model<IAppState> {
     phone: '',
   };
   formErrors: FormErrors = {};
+
+  /**
+   * Метод для проверки наличия товаров в корзине
+   */
+  // isProductInBasket(productId: string): boolean {
+  //   return this.basket.some(item => item.id === productId);
+  // }
 
   /**
    * Метод добавляет товар в корзину.
