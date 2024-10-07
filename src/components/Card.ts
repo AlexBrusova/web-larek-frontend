@@ -51,7 +51,7 @@ export class Product extends Component<ProductApiData> {
   }
 
   set title(value: string) {
-    this._title.textContent = value;
+    this.setText(this._title, value);
   }
 
   get title(): string {
@@ -78,7 +78,7 @@ export class Product extends Component<ProductApiData> {
   }
 
   set category(value: CategoryType) {
-    this._category.textContent = value;
+    this.setText(this._category, value);
     this.toggleClass(this._category, categoryMap[value], true);
   }
 }
@@ -106,6 +106,6 @@ export class CatalogProductPreview extends Product {
   }
 
   set description(value: string) {
-    this._description.textContent = value;
+    this.setText(this._description, value);
   }
 }

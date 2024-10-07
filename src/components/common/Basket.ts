@@ -54,7 +54,7 @@ export class ShoppingCart extends Component<IBasketData> {
   // Сеттер для установки общей стоимости товаров в корзине.
   // Обновляет текстовое содержимое элемента total.
   set totalPrice(price: number) {
-    this.total.textContent = price + ' синапсов';
+    this.setText(this.total, price + ' синапсов')
   }
 
   // Сеттер для установки списка товаров.
@@ -141,16 +141,16 @@ export class CatalogCartItem extends Component<IProductCardInCart> {
 
   // Сеттер для названия товара, обновляет текстовое содержимое itemTitle.
   set title(name: string) {
-    this.itemTitle.textContent = name;
+    this.setText(this.itemTitle, name);
   }
 
   // Сеттер для индекса товара, обновляет текстовое содержимое itemIndex.
   set index(idx: number) {
-    this.itemIndex.textContent = idx.toString();
+    this.setText(this.itemIndex, idx.toString());
   }
 
   // Сеттер для цены товара, обновляет текстовое содержимое itemPrice.
   set price(amount: number) {
-    this.itemPrice.textContent = amount + ' синапсов';
+    this.setText(this.itemPrice, amount + ' синапсов');
   }
 }

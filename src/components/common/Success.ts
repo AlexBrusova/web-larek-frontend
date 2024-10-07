@@ -55,6 +55,6 @@ export class Success extends Component<ISuccess> {
   // Сеттер для свойства description, обновляющий текст элемента описания.
   // Он принимает значение числа и отображает его в формате "Списано X синапсов".
   set description(value: number) {
-    this.descriptionElement.textContent = 'Списано ' + value + ' синапсов';
+    this.setText(this.descriptionElement, 'Списано ' + value + ' синапсов')
   }
 }
