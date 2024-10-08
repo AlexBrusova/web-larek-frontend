@@ -73,12 +73,13 @@ export class ShoppingCart extends Component<IBasketData> {
   // Метод обновляет индексы товаров в корзине. 
   // Каждый товар имеет индекс (например, порядковый номер) для отображения.
   updateItemIndices() {
-    Array.from(this.itemList.children).forEach((item, idx) => {
-      const indexElement = item.querySelector(`.cart__item-index`);
-      if (indexElement) {
-        indexElement.textContent = (idx + 1).toString();
+    Array.from(this.itemList.children).forEach(
+      (item, idx) => {
+        item.querySelector('.basket__item-index')!.textContent = (
+          idx + 1
+        ).toString()
       }
-    });
+    );
   }
 }
 
@@ -89,7 +90,7 @@ export class ShoppingCart extends Component<IBasketData> {
  */
 export interface IProductCardInCart extends ProductApiData {
   itemId: string;
-  itemIndex: number;
+  index: number;
 }
 
 /**
@@ -125,7 +126,7 @@ export class CatalogCartItem extends Component<IProductCardInCart> {
 
     // Инициализация элементов товара через поиск их в DOM по classPrefix.
     this.itemTitle = rootElement.querySelector(`.${classPrefix}__title`);
-    this.itemIndex = rootElement.querySelector(`.cart__item-index`);
+    this.itemIndex = rootElement.querySelector(`.basket__item-index`);
     this.itemPrice = rootElement.querySelector(`.${classPrefix}__price`);
     this.removeButton = rootElement.querySelector(`.${classPrefix}__button`);
 

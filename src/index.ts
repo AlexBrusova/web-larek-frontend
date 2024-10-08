@@ -80,8 +80,8 @@ api
         image: item.image,
         category: item.category as CategoryType,
         description: item.description,
-        price: item.price
-        //тут было selected
+        price: item.price,
+        selected: item.selected
       }),
     });
   });
@@ -106,7 +106,7 @@ api
       return catalogItem.render({
         title: item.title,
         price: item.price,
-        itemIndex: index + 1,
+        index: index + 1,
       });
     });
     modal.render({

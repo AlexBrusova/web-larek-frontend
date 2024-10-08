@@ -22,6 +22,7 @@ export interface ProductApiData {
   title: string;
   category: CategoryType;
   price: number | null
+  selected: boolean
 }
 
 /**
