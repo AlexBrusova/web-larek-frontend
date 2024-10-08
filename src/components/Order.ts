@@ -1,6 +1,5 @@
 import { IEvents } from './base/events';
 import { FormHandler } from '../components/common/Form';
-import { Component } from './base/Component';
 
 /**
  * Интерфейс, определяющий структуру заказа

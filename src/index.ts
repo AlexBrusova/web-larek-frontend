@@ -8,10 +8,10 @@ import { EventEmitter } from './components/base/events';
 import { ModalComponent } from './components/common/Modal';
 import { CatalogProductPreview, CatalogIProduct } from './components/Card';
 import { Product, AppState } from './components/AppData';
-import { ShoppingCart, CatalogCartItem } from './components/common/Basket';
+import { ShoppingCart, CatalogCartItem } from './components/Basket';
 import { Order } from './components/Order';
 import { Contacts } from './components/Contacts';
-import { Success } from './components/common/Success';
+import { Success } from './components/Success';
 
 const api = new Api(API_URL);
 const events = new EventEmitter;

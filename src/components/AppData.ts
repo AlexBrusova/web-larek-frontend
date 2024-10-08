@@ -1,6 +1,5 @@
 import { Model } from "./base/Model";
 import {ProductApiData, IAppState, IOrder, IOrderData, FormErrors} from "../types"
-import { Order } from "./Order";
 
 /**
  * Класс Product описывает структуру данных товара.

@@ -1,4 +1,4 @@
-import { Component } from "../base/Component";
+import { Component } from "./base/Component"
 
 /**
  * Интерфейс ISuccessActions описывает действия, связанные с успешным событием.

@@ -1,6 +1,9 @@
-import { IEvents } from "../base/events";
-import { Component } from "../base/Component";
-import { ProductApiData } from "../../types";
+import {IEvents} from "./base/events";
+import {Component} from "./base/Component";
+import {ProductApiData} from "../types"
+// import { IEvents } from "../base/events";
+// import { Component } from "../base/Component";
+// import { ProductApiData } from "../../types";
 
 /**
  * Интерфейс описывает структуру данных корзины, которая включает:
