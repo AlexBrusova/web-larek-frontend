@@ -66,7 +66,8 @@ export class FormHandler<U> extends Component<IFormStatus> {
   // Сеттер для свойства isValid, определяющий, корректна ли форма.
   // Если форма некорректна, кнопка отправки блокируется.
   set isValid(isFormValid: boolean) {
-    this.submitButton.disabled = !isFormValid;
+    this.setDisabled(this.submitButton, !isFormValid)
+    // this.submitButton.disabled = !isFormValid;
   }
 
   // Сеттер для установки сообщений об ошибках в форме.

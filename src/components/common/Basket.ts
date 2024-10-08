@@ -62,12 +62,14 @@ export class ShoppingCart extends Component<IBasketData> {
   // Если список пуст, кнопка заказа блокируется.
   set items(elements: HTMLElement[]) {
     this.itemList.replaceChildren(...elements);
-    this.orderButton.disabled = elements.length === 0;
+    // this.orderButton.disabled = elements.length === 0;
+    this.setDisabled(this.orderButton, elements.length === 0);
   }
 
   // Метод для ручной блокировки кнопки заказа.
   disableOrderButton() {
-    this.orderButton.disabled = true;
+    this.setDisabled(this.orderButton, true)
+    // this.orderButton.disabled = true;
   }
 
   // Метод обновляет индексы товаров в корзине. 

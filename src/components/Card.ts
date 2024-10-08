@@ -64,7 +64,8 @@ export class Product extends Component<ProductApiData> {
 
   set selected(value: boolean) {
     if (!this._button.disabled) {
-      this._button.disabled = value;
+      this.setDisabled(this._button, value)
+      // this._button.disabled = value;
     }
   }
 
@@ -73,7 +74,8 @@ export class Product extends Component<ProductApiData> {
       ? value + ' синапсов'
       : 'Бесценно';
     if (this._button && !value) {
-      this._button.disabled = true;
+      this.setDisabled(this._button, true)
+      // this._button.disabled = true;
     }
   }
 
