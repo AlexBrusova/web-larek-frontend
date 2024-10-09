@@ -1,9 +1,6 @@
 import {IEvents} from "./base/events";
 import {Component} from "./base/Component";
 import {ProductApiData} from "../types"
-// import { IEvents } from "../base/events";
-// import { Component } from "../base/Component";
-// import { ProductApiData } from "../../types";
 
 /**
  * Интерфейс описывает структуру данных корзины, которая включает:
@@ -26,6 +23,7 @@ export class ShoppingCart extends Component<IBasketData> {
   private itemList: HTMLElement;
   private total: HTMLElement;
   private orderButton: HTMLButtonElement;
+  private index: HTMLElement;
 
 
   // Конструктор принимает:
@@ -44,6 +42,7 @@ export class ShoppingCart extends Component<IBasketData> {
     this.orderButton = rootElement.querySelector(`.${classPrefix}__button`);
     this.total = rootElement.querySelector(`.${classPrefix}__price`);
     this.itemList = rootElement.querySelector(`.${classPrefix}__list`);
+    this.index = rootElement.querySelector('.basket__item-index')
 
     // Добавление обработчика события "click" для кнопки заказа, который
     // вызывает кастомное событие 'basket:checkout', если кнопка найдена.
@@ -77,15 +76,19 @@ export class ShoppingCart extends Component<IBasketData> {
 
   // Метод обновляет индексы товаров в корзине. 
   // Каждый товар имеет индекс (например, порядковый номер) для отображения.
+
   updateItemIndices() {
     Array.from(this.itemList.children).forEach(
       (item, idx) => {
-        item.querySelector('.basket__item-index')!.textContent = (
-          idx + 1
-        ).toString()
+        // item.querySelector('.basket__item-index')!.textContent = (
+        //   idx + 1
+        // ).toString()
+        const basketItem = new CatalogCartItem('basket', item as HTMLElement);
+        basketItem.index = idx + 1;
       }
     );
   }
+  
 }
 
 /**
